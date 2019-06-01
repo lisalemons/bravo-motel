@@ -15,8 +15,9 @@ export class BookingService {
    */
   bookRoom(customer: Customer, bedsDesired: number): Room {
     let roomLevel: number;
+
     // Book a room
-    if (customer.numberOfPets || customer.customerRequestedAccessible) {
+    if (customer.customerRequestedAccessible || customer.numberOfPets > 0) {
       roomLevel = 1;
     } else {
       roomLevel = 2;

@@ -7,7 +7,8 @@ export class Customer {
 
   /**
    * A customer of Bravo Motel.
-   * @param numberOfPets 0 - 2 pets can stay with the customer
+   * @param name The customer's name
+   * @param numberOfPets # of customer's furry guests, max of 2
    */
   constructor(name: string, numberOfPets: number = 0) {
     this.name = name;

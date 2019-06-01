@@ -18,7 +18,7 @@
 <input type="number"
        name="numOfPets"
        max="2"
-       min="1"
+       min="0"
        [(ngModel)]="numOfPets">
 
 <div class="form-field">
@@ -35,8 +35,12 @@
   Book!
 </button>
 
-<p *ngIf="room && customer">
+<p *ngIf="room">
   {{ customer.name }} has booked a {{ room.beds }}-bed
   room on the {{ room.level }}<sup>{{ room.level === 1 ? 'st' : 'nd'}}</sup>
   floor.
+</p>
+
+<p *ngIf="room">
+  <strong>Total:</strong> ${{ bookingService.calculateTotal(customer.numberOfPets, room.beds) }}
 </p>
