@@ -23,6 +23,9 @@ export class BookingService {
       roomLevel = 2;
     }
 
+    if (bedsDesired < 1) { bedsDesired = 1; }
+    if (bedsDesired > 3) { bedsDesired = 3; }
+
     return new Room(roomLevel, bedsDesired);
   }
 

@@ -15,23 +15,23 @@ export class AppComponent {
   room: Room;
 
   customerName: string;
-  numOfPets: number;
+  numberOfPets: number;
   bedsRequested: number;
   accessibleRoom: boolean;
   totalCost: number;
 
   constructor() {
     this.customerName = 'Lisa Lemons';
-    this.numOfPets = 0;
+    this.numberOfPets = 0;
     this.bedsRequested = 1;
     this.accessibleRoom = true;
   }
 
   bookRoom() {
-    this.customer = new Customer(this.customerName, this.numOfPets);
+    this.customer = new Customer(this.customerName, this.numberOfPets);
     this.customer.customerRequestedAccessible = this.accessibleRoom;
     this.room = this.bookingService.bookRoom(this.customer, this.bedsRequested);
-    console.log("Customer: ", this.customer, "Room: ", this.room);
+
     this.totalCost = this.bookingService.calculateTotal(this.customer.numberOfPets, this.room.beds);
   }
 }

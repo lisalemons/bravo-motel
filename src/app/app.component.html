@@ -1,46 +1,70 @@
-<div class="form-field">
-  <label for="customerName">Customer Name</label>
-  <input name="customerName"
-         placeholder="Enter Name"
-         [(ngModel)]="customerName">
+<div class="app container">
+  <h1>Welcome to {{ title }}!</h1>
+  <form>
+    <div class="row">
+      <div class="twelve columns">
+        <label for="customerName">Customer Name</label>
+        <input name="customerName"
+               type="text"
+               class="u-full-width"
+               placeholder="Enter Name"
+               [(ngModel)]="customerName">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <label for="bedsRequested">No. of Beds</label>
+        <input type="number"
+               name="bedsRequested"
+               max="3"
+               min="1"
+               [(ngModel)]="bedsRequested">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <label for="numberOfPets">No. of Pets</label>
+        <input type="number"
+               name="numberOfPets"
+               max="2"
+               min="0"
+               [(ngModel)]="numberOfPets">
+      </div>
+    </div>
+
+    <div class="six columns">
+      <label class="u-full-width">
+        <input type="checkbox"
+               name="Request Accessible Room"
+               [(ngModel)]="accessibleRoom">
+        <span class="label-body">Requesting Accessible Room</span>
+      </label>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <button type="submit"
+                class="button button-primary u-full-width"
+                (click)="bookRoom()">
+          Book!
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="app__message">
+    <p *ngIf="room">
+      {{ customer.name }}
+      <span *ngIf="customer.numberOfPets > 0">and {{ customer.numberOfPets }} pet(s)</span>
+      {{ customer.numberOfPets > 0 ? 'have' : 'has' }} booked a {{ room.beds }}-bed
+      room on the {{ room.level }}<sup>{{ room.level === 1 ? 'st' : 'nd'}}</sup>
+      floor.
+    </p>
+
+    <p *ngIf="room">
+      <strong>Total:</strong> ${{ bookingService.calculateTotal(customer.numberOfPets, room.beds) }}
+    </p>
+  </div>
 </div>
-
-<div class="form-field">
-  <label for="bedsRequested">No. of Beds</label>
-  <input type="number"
-         name="bedsRequested"
-         max="3"
-         min="1"
-         [(ngModel)]="bedsRequested">
-</div>
-
-<label for="numOfPets">No. of Pets</label>
-<input type="number"
-       name="numOfPets"
-       max="2"
-       min="0"
-       [(ngModel)]="numOfPets">
-
-<div class="form-field">
-  <label for="accessibility">
-    Requesting Accessible Room
-    <input type="checkbox"
-           name="accessibility"
-           [(ngModel)]="accessibleRoom">
-  </label>
-</div>
-
-<button type="button"
-        (click)="bookRoom()">
-  Book!
-</button>
-
-<p *ngIf="room">
-  {{ customer.name }} has booked a {{ room.beds }}-bed
-  room on the {{ room.level }}<sup>{{ room.level === 1 ? 'st' : 'nd'}}</sup>
-  floor.
-</p>
-
-<p *ngIf="room">
-  <strong>Total:</strong> ${{ bookingService.calculateTotal(customer.numberOfPets, room.beds) }}
-</p>
