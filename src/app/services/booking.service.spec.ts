@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { BookingService } from './booking.service';
-import { Room } from '@models/room/room';
 import { Customer } from '@models/customer/customer';
 
 describe('BookingService', () => {
@@ -43,7 +42,7 @@ describe('BookingService', () => {
     expect(bookingService.calculateTotal(
       testCustomer.numberOfPets,
       testCustomer.numberOfBeds))
-    .toEqual(70);
+    .toEqual(50);
   });
 
   it('should calculate the room costs 70', () => {
@@ -55,22 +54,22 @@ describe('BookingService', () => {
     .toEqual(70);
   });
 
-  it('should calculate the room costs 95', () => {
+  it('should calculate the room costs 115', () => {
     testCustomer.numberOfPets = 2;
     testCustomer.numberOfBeds = 2;
     expect(bookingService.calculateTotal(
       testCustomer.numberOfPets,
       testCustomer.numberOfBeds))
-    .toEqual(95);
+    .toEqual(115);
   });
 
-  it('should calculate the room costs 75', () => {
+  it('should calculate the room costs 90', () => {
     testCustomer.numberOfPets = 0;
     testCustomer.numberOfBeds = 3;
     expect(bookingService.calculateTotal(
       testCustomer.numberOfPets,
       testCustomer.numberOfBeds))
-    .toEqual(75);
+    .toEqual(90);
   });
 
   it('should calculate the room costs 130', () => {

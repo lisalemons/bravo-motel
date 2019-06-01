@@ -34,6 +34,25 @@ export class BookingService {
   calculateTotal(numPets: number, numBeds: number): number {
     // Calculate total
     let total = 0;
+
+    if (numPets > 0 && numPets < 3) {
+      total += (numPets * 20);
+    }
+
+    switch (numBeds) {
+      case 1:
+        total += 50;
+        break;
+      case 2:
+        total += 75;
+        break;
+      case 3:
+        total += 90;
+        break;
+      default:
+        break;
+    }
+
     return total;
   }
 }
