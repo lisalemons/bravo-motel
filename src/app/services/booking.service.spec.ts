@@ -7,9 +7,9 @@ describe('BookingService', () => {
   let testCustomer: Customer;
   let bookingService: BookingService;
 
-  beforeEach(() =>{
+  beforeEach(() => {
     TestBed.configureTestingModule({
-        "providers": [
+        providers: [
           BookingService,
           {
             provide: Customer,

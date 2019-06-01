@@ -6,8 +6,7 @@ export class Customer {
   private requestedAccessible: boolean;
 
   /**
-   *
-   * @param name
+   * A customer of Bravo Motel.
    * @param numberOfPets 0 - 2 pets can stay with the customer
    */
   constructor(name: string, numberOfPets: number = 0) {
@@ -22,7 +21,7 @@ export class Customer {
     this.requestedAccessible = requested;
   }
 
-  get customerRequestedAccessible() : boolean {
+  get customerRequestedAccessible(): boolean {
     return this.requestedAccessible;
   }
 }

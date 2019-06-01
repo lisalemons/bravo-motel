@@ -20,5 +20,5 @@ describe('Customer', () => {
 
   it ('should have no idea if customer requested accessible room', () => {
     expect(new Customer(lisaLemonsName).customerRequestedAccessible).toBeUndefined();
-  })
+  });
 });
