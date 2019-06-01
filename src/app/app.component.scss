@@ -1,11 +1,42 @@
+@import '../assets/variables';
 .app {
  display: flex;
  flex-direction: column;
- justify-content: center;
+ justify-content: space-around;
 
- height: 100vh;
+ height: 100%;
+ &__container {
+  background: white;
+  padding: 3rem;
+  height: 100%;
+ }
+
+ &__submit, &__submit:focus  {
+  color: #222;
+  background-color: $primary;
+  border-color: $primary;
+
+  &:hover, &:active {
+   color: #222;
+   background-color: darken($primary, 2%);
+   border-color: darken($primary, 2%);
+  }
+ }
+
+ .lisa-lemons:hover {
+  color: darken($primary, 2%);
+ }
 
  &__message {
-  height: 100px;
+  height: 10vh;
+ }
+
+ &__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+
+  font-family: monospace;
+  font-size:.85em;
  }
 }
