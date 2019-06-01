@@ -13,9 +13,17 @@ export class BookingService {
    * customer's wants and needs.
    * @param customer The customer bookimng the room
    */
-  bookRoom(customer: Customer): Room{
+  bookRoom(customer: Customer, bedsDesired: number): Room{
+    console.log(customer);
+    let roomLevel;
     // Book a room
-    return new Room(0, 1);
+    if (customer.numberOfPets || customer.customerRequestedAccessible) {
+      roomLevel = 1;
+    } else {
+      roomLevel = 2;
+    }
+
+    return new Room(roomLevel, bedsDesired);
   }
 
   /**

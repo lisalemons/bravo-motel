@@ -7,12 +7,19 @@ import { Customer } from '@models/customer/customer';
 describe('BookingService', () => {
   let testCustomer: Customer;
   let bookingService: BookingService;
-  let testRoom: Room;
+
   beforeEach(() =>{
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+        "providers": [
+          BookingService,
+          {
+            provide: Customer,
+            useValue: new Customer('Lisa Lemons')
+          }
+        ]
+    });
     testCustomer = TestBed.get(Customer);
     bookingService = TestBed.get(BookingService);
-    testRoom = TestBed.get(testRoom);
   });
 
   it('should be created', () => {
@@ -21,19 +28,58 @@ describe('BookingService', () => {
 
   it('should book a level 1 room', () => {
     testCustomer.customerRequestedAccessible = true;
-    this.service.bookRoom(this.testCustomer);
+    const testRoom = bookingService.bookRoom(testCustomer, 1);
     expect(testRoom.level).toEqual(1);
   });
 
   it('should book a 3 bed room', () => {
+    const testRoom = bookingService.bookRoom(testCustomer, 3);
     expect(testRoom.beds).toEqual(3);
   });
 
+  it('should calculate the room costs 50', () => {
+    testCustomer.numberOfPets = 0;
+    testCustomer.numberOfBeds = 1;
+    expect(bookingService.calculateTotal(
+      testCustomer.numberOfPets,
+      testCustomer.numberOfBeds))
+    .toEqual(70);
+  });
+
+  it('should calculate the room costs 70', () => {
+    testCustomer.numberOfPets = 1;
+    testCustomer.numberOfBeds = 1;
+    expect(bookingService.calculateTotal(
+      testCustomer.numberOfPets,
+      testCustomer.numberOfBeds))
+    .toEqual(70);
+  });
+
+  it('should calculate the room costs 95', () => {
+    testCustomer.numberOfPets = 2;
+    testCustomer.numberOfBeds = 2;
+    expect(bookingService.calculateTotal(
+      testCustomer.numberOfPets,
+      testCustomer.numberOfBeds))
+    .toEqual(95);
+  });
+
   it('should calculate the room costs 75', () => {
-    expect(bookingService.calculateTotal(0, 2)).toEqual(75);
+    testCustomer.numberOfPets = 0;
+    testCustomer.numberOfBeds = 3;
+    expect(bookingService.calculateTotal(
+      testCustomer.numberOfPets,
+      testCustomer.numberOfBeds))
+    .toEqual(75);
   });
 
   it('should calculate the room costs 130', () => {
-    expect(bookingService.calculateTotal(2, 3));
+    testCustomer.numberOfPets = 2;
+    testCustomer.numberOfBeds = 3;
+
+    expect(bookingService.calculateTotal(
+      testCustomer.numberOfPets,
+      testCustomer.numberOfBeds))
+    .toEqual(130);
   });
 });
